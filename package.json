@@ -1,0 +1,7 @@
+{
+  "name": "autofy-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autofy agency website",
+  "engines": { "node": ">=18" }
+}
