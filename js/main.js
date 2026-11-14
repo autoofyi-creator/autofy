@@ -110,5 +110,13 @@
   };
   addEventListener('scroll', upd, { passive: true }); upd();
 
+  /* Testimonials: only real entries from /data/testimonials.json are shown */
+  fetch('/data/testimonials.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).then(list => {
+    if (!Array.isArray(list) || !list.length) return;
+    const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    $('#voicesGrid').innerHTML = list.slice(0, 6).map(t => `<figure class="voice reveal in"><blockquote>“${esc(t.quote)}”</blockquote><figcaption><b>${esc(t.name)}</b>${esc([t.role, t.company].filter(Boolean).join(', '))}${t.url ? ` · <a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')}</a>` : ''}</figcaption></figure>`).join('');
+    $('#voices').hidden = false;
+  }).catch(() => {});
+
   $('#yr').textContent = new Date().getFullYear();
 })();

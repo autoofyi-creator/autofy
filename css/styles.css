@@ -276,3 +276,16 @@ details[open]>summary::after{transform:rotate(45deg)}
 }
 .cal.failed{min-height:0}
 @media (min-width:1040px){.card--billing{align-self:start}}
+
+.card__review{display:block;margin-top:14px;text-align:center;color:#8ab8f5;font-weight:600;font-size:15px;text-decoration:none;padding:8px 0}
+.card__review:hover{text-decoration:underline;text-underline-offset:4px}
+.voices{display:grid;gap:16px;margin-top:32px}
+.voice{margin:0;padding:26px 24px;border-radius:22px;background:var(--grey);display:flex;flex-direction:column;gap:18px}
+.voice blockquote{margin:0;font-size:1.15rem;line-height:1.5;letter-spacing:-.01em;color:var(--ink)}
+.voice figcaption{margin-top:auto;font-size:15px;color:var(--mute)}
+.voice figcaption b{display:block;color:var(--ink);font-weight:650}
+.voice figcaption a{color:var(--blue-text)}
+@media (min-width:760px){.voices{grid-template-columns:1fr 1fr}}
+@media (min-width:1040px){.voices{grid-template-columns:repeat(3,1fr);margin-top:48px}.voice{padding:32px 30px}}
+#voices[hidden]{display:none}
+.card--billing .card__note b{color:#fff}
