@@ -276,3 +276,16 @@ details[open]>summary::after{transform:rotate(45deg)}
 }
 .cal.failed{min-height:0}
 @media (min-width:1040px){.card--billing{align-self:start}}
+
+/* Demo cards: equal columns, three whole screens each, buttons aligned */
+.card__body{display:flex;flex-direction:column}
+.card__body .btn{margin-top:auto}
+@media (min-width:1040px){
+  .work__grid{grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+  .card,.card:not(.card--billing){display:flex;flex-direction:column}
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;overflow:hidden;height:auto;min-height:0;padding:28px 28px 0;scroll-snap-type:none}
+  .strip img{width:100%;height:auto;aspect-ratio:480/1000;object-fit:cover;object-position:top;border-radius:18px 18px 0 0}
+  .strip img:nth-child(n+4){display:none}
+  .card__body{flex:1;padding:30px 34px 34px}
+  .card__body .card__note{margin:14px 0 24px}
+}
