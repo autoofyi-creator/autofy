@@ -115,8 +115,34 @@
     if (!Array.isArray(list) || !list.length) return;
     const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     $('#voicesGrid').innerHTML = list.slice(0, 6).map(t => `<figure class="voice reveal in"><blockquote>“${esc(t.quote)}”</blockquote><figcaption><b>${esc(t.name)}</b>${esc([t.role, t.company].filter(Boolean).join(', '))}${t.url ? ` · <a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')}</a>` : ''}</figcaption></figure>`).join('');
-    $('#voices').hidden = false;
+    $('#voicesLead').textContent = 'Words from people who have used our work, published with their permission.';
   }).catch(() => {});
+
+  /* Review form: goes to us for approval, never published automatically */
+  const rm = $('#revModal'), rf = $('#revForm'), rmsg = $('#revMsg');
+  $('#openReview').addEventListener('click', () => { rmsg.textContent = ''; rm.showModal ? rm.showModal() : rm.setAttribute('open', ''); });
+  $('#revClose').addEventListener('click', () => rm.close());
+  rm.addEventListener('click', e => { if (e.target === rm) rm.close(); });
+  rf.addEventListener('submit', async e => {
+    e.preventDefault(); rmsg.textContent = '';
+    const fd = new FormData(rf), d = Object.fromEntries(fd.entries()); d.consent = !!fd.get('consent');
+    if (!d.name.trim() || (d.review || '').trim().length < 10) return (rmsg.textContent = 'Please add your name and a few words about your experience.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((d.email || '').trim())) return (rmsg.textContent = 'Please enter a valid email so we can verify it’s you.');
+    if (!d.consent) return (rmsg.textContent = 'Please tick the box to let us publish your review.');
+    const b = $('#revBtn'); b.disabled = true; b.textContent = 'Sending…';
+    let ok = false;
+    try { const r = await fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) }); ok = r.ok; if (r.status === 400) { rmsg.textContent = (await r.json().catch(() => ({}))).error || 'Please check your details.'; b.disabled = false; b.textContent = 'Send review'; return; } } catch {}
+    if (!ok) {
+      try {
+        const r = await fetch('https://formsubmit.co/ajax/' + NOTIFY, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ _subject: `New review (${d.rating}/5) from ${d.name}`, _captcha: 'false', _template: 'table', _replyto: d.email, Name: d.name, Role: d.role, Rating: d.rating, Project: d.project, Review: d.review, Email: d.email, 'Permission to publish': 'yes' }) });
+        ok = r.ok;
+      } catch {}
+    }
+    b.disabled = false; b.textContent = 'Send review';
+    if (!ok) return (rmsg.textContent = 'Could not send right now. Please email info@autofyy.online instead.');
+    rf.reset(); rm.close(); alert('Thank you. We’ve received your review and will be in touch by email.');
+  });
 
   $('#yr').textContent = new Date().getFullYear();
 })();
