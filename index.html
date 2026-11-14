@@ -143,7 +143,7 @@
   <div class="container">
     <header class="work__head reveal">
       <h2>Two apps you can install right now</h2>
-      <p>Skip the case-study slides. Download the salon app here, and get Billket from Google Play. Use them the way a customer would.</p>
+      <p>Skip the case-study slides. Download the real apps from this page onto an Android phone and use them the way a customer would.</p>
     </header>
 
     <div class="work__grid">
@@ -158,35 +158,27 @@
         <div class="card__body">
           <h3>Salon booking app</h3>
           <p>For salons and spas. Browse treatments, pick a stylist, book a slot, save favourites and manage a membership.</p>
-          <p class="card__note">No login needed. Android, 6.6&nbsp;MB.</p>
-          <div class="card__cta"><a class="btn btn--lg btn--block" href="/downloads/autofy-salon-demo.apk" download data-apk>Download for Android</a></div>
+          <p class="card__note"><b>No login needed.</b> Install it and it opens straight away. Android, 6.6&nbsp;MB.</p>
+          <a class="btn btn--lg btn--block" href="/downloads/autofy-salon-demo.apk" download data-apk>Download for Android</a>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="panel" aria-hidden="true">
-          <p class="panel__tag"><i></i>Billket</p>
-          <ul class="feat">
-            <li>GST invoices</li>
-            <li>Stock and inventory</li>
-            <li>Sales and purchases</li>
-            <li>Payments and reports</li>
-          </ul>
-        </div>
+      <article class="card card--billing reveal">
         <div class="card__body">
-          <h3>Billket, GST billing app</h3>
-          <p>For shops, wholesalers and distributors in India. Create GST invoices, manage stock, record sales and purchases, and track payments.</p>
-          <p class="card__note">Live on Google Play. Android.</p>
-          <div class="card__cta">
-            <a class="btn btn--lg btn--block" href="https://play.google.com/store/apps/details?id=com.billket.app" target="_blank" rel="noopener">Get it on Google Play</a>
-            <a class="card__review" href="https://play.google.com/store/apps/details?id=com.billket.app" target="_blank" rel="noopener">See the listing and reviews ↗</a>
-          </div>
+          <h3>Billing software</h3>
+          <p>Invoices and billing for small businesses. Create bills, track what’s been paid and see the day’s sales at a glance.</p>
+          <p class="card__note">This one has a login. Use the demo account:</p>
+          <dl class="login">
+            <div><dt>Mobile no.</dt><dd id="credUser">9999999999</dd><button type="button" class="copy" data-copy="9999999999" aria-label="Copy mobile number">Copy</button></div>
+            <div><dt>Password</dt><dd id="credPass">123456</dd><button type="button" class="copy" data-copy="123456" aria-label="Copy password">Copy</button></div>
+          </dl>
+          <a class="btn btn--lg btn--block" href="/downloads/autofy-billing-demo.apk" download data-apk>Download for Android</a>
         </div>
       </article>
     </div>
 
     <details class="install reveal">
-      <summary>How to install the salon app (APK) on Android</summary>
+      <summary>How to install an APK on Android</summary>
       <ol>
         <li>Open this page on your Android phone and tap <b>Download</b>.</li>
         <li>Tap the downloaded file. If Android asks, allow <b>Install unknown apps</b> for your browser.</li>
@@ -202,26 +194,6 @@
       </span>
       <span class="live__go">chatishai.com&nbsp;↗</span>
     </a>
-  </div>
-</section>
-
-<section class="section section--grey" id="voices">
-  <div class="container">
-    <header class="work__head reveal">
-      <h2>What clients say</h2>
-      <p id="voicesLead">We’d rather show you real words than invented ones, so this section only holds reviews from people who have used our work.</p>
-    </header>
-    <div class="voices" id="voicesGrid"></div>
-    <div class="ask reveal" id="voicesAsk">
-      <div>
-        <h3>Used one of our apps or sites?</h3>
-        <p>Tell us honestly how it went. With your permission, we’ll publish your words here exactly as you wrote them.</p>
-      </div>
-      <div class="ask__btns">
-        <button type="button" class="btn btn--lg" id="openReview">Write a review</button>
-        <a class="btn btn--lg btn--light" href="https://play.google.com/store/apps/details?id=com.billket.app" target="_blank" rel="noopener">Review Billket on Google Play</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -330,26 +302,6 @@
     <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
     <button class="btn btn--lg btn--block" type="submit" id="reqBtn">Continue to WhatsApp</button>
     <p class="modal__msg" id="reqMsg" role="status"></p>
-  </form>
-</dialog>
-
-<dialog class="modal" id="revModal" aria-labelledby="revTitle">
-  <form method="dialog" class="modal__in" id="revForm" novalidate>
-    <button type="button" class="modal__x" id="revClose" aria-label="Close">×</button>
-    <h3 id="revTitle">Write a review</h3>
-    <p>Honest is best. We read every one before publishing, and only with your permission.</p>
-    <label><span>Your name</span><input name="name" autocomplete="name" required maxlength="120"></label>
-    <label><span>Role and company (optional)</span><input name="role" autocomplete="organization-title" maxlength="160"></label>
-    <fieldset class="rate"><legend>Your rating</legend>
-      <label><input type="radio" name="rating" value="5" checked><i>5</i></label><label><input type="radio" name="rating" value="4"><i>4</i></label><label><input type="radio" name="rating" value="3"><i>3</i></label><label><input type="radio" name="rating" value="2"><i>2</i></label><label><input type="radio" name="rating" value="1"><i>1</i></label>
-    </fieldset>
-    <label><span>Which project or app?</span><input name="project" maxlength="160" placeholder="e.g. Billket, salon app, my website"></label>
-    <label><span>Your review</span><textarea name="review" rows="4" required maxlength="1200"></textarea></label>
-    <label><span>Email (so we can verify it’s you, never shown)</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
-    <label class="consent"><input type="checkbox" name="consent" required> <span>You may publish my name and review on autofyy.online.</span></label>
-    <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-    <button class="btn btn--lg btn--block" type="submit" id="revBtn">Send review</button>
-    <p class="modal__msg" id="revMsg" role="status"></p>
   </form>
 </dialog>
 
