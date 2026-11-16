@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://autofyy.online/sitemap.xml
+Sitemap: https://www.autofyy.online/sitemap.xml
