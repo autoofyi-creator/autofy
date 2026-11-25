@@ -30,6 +30,30 @@
     rev.forEach(el => io.observe(el));
   } else rev.forEach(el => el.classList.add('in'));
 
+  /* Concept tabs (without JS all three panels simply show one after another) */
+  const tabs = $$('.cx__tab');
+  function pickTab(t, focus) {
+    tabs.forEach(x => {
+      const on = x === t;
+      x.setAttribute('aria-selected', on);
+      x.tabIndex = on ? 0 : -1;
+      $('#' + x.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) t.focus();
+  }
+  if (tabs.length) {
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pickTab(t));
+      t.addEventListener('keydown', e => {
+        const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        if (k) { e.preventDefault(); pickTab(tabs[(i + k + tabs.length) % tabs.length], true); }
+        if (e.key === 'Home') { e.preventDefault(); pickTab(tabs[0], true); }
+        if (e.key === 'End') { e.preventDefault(); pickTab(tabs[tabs.length - 1], true); }
+      });
+    });
+    pickTab(tabs[0]);
+  }
+
   /* Copy buttons */
   $$('.copy').forEach(b => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.copy); }
